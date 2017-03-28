@@ -11,40 +11,36 @@ class PetsNew extends Component {
       name: '',
       description: '',
     };
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.handleOnNameChange = this.handleOnNameChange.bind(this);
+    this.handleOnDescriptionChange = this.handleOnDescriptionChange.bind(this);
   }
-  handleOnSubmit(event) {
-    event.preventDefault();
+
+  handleOnSubmit(ev) {
+    ev.preventDefault();
     this.props.addPet(this.state);
     browserHistory.push('/pets');
   }
-  handleOnNameChange(event) {
+
+  handleOnNameChange(ev) {
     this.setState({
-      name: event.target.value
+      name: ev.target.value
     });
   }
-  handleOnDescriptionChange(event) {
+
+  handleOnDescriptionChange(ev) {
     this.setState({
-      description: event.target.value
+      description: ev.target.value
     });
   }
+
   render() {
     return (
-      <div>
-        <h2>Add a Pet</h2>
-        <form onSubmit={(event) => this.handleOnSubmit(event)} >
-          <input
-            type="text"
-            placeholder="Name"
-            onChange={(event) => this.handleOnNameChange(event)} />
-          <input
-            type="text"
-            placeholder="Description"
-            onChange={(event) => this.handleOnDescriptionChange(event)} />
-          <input
-            type="submit"
-            value="Add Pet" />
-        </form>
-      </div>
+      <form onSubmit={this.handleOnSubmit} >
+        <input type="text" placeholder="name" onChange={this.handleOnNameChange} />
+        <input type="text" placeholder="description" onChange={this.handleOnDescriptionChange} />
+        <input type="submit" value="Add Pet" />
+      </form>
     );
   }
 };

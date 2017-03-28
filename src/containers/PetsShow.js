@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 const PetsShow = (props) => {
   const pet = props.pet;
-
   return (
     <div className="col-md-8">
       <h2>{pet.name}</h2>
@@ -14,7 +13,7 @@ const PetsShow = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    pet: {}
+    pet: state.pets.find(pet => pet.id == ownProps.routeParams.id)
   };
 };
 
